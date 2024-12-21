@@ -50,6 +50,14 @@ class FlutterThermalPrinter {
   //   }
   // }
 
+  Future<bool> isConnected(Printer device) async {
+    if (Platform.isWindows) {
+      return false;
+    } else {
+      return await OtherPrinterManager.instance.isConnected(device);
+    }
+  }
+
   Future<bool> connect(Printer device) async {
     if (Platform.isWindows) {
       return await WindowPrinterManager.instance.connect(device);
